@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClimaMLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="period">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="weatherId" Type="int" Nullable="false" />
+    <Property Name="planetId" Type="int" Nullable="false" />
+    <Property Name="rainfall" Type="float" />
+    <Property Name="temperature" Type="int" Nullable="false" />
+    <Property Name="pressure" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="planet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="weather">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_planet_id">
+    <End Role="planet" Type="Self.planet" Multiplicity="1" />
+    <End Role="period" Type="Self.period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="planet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="period">
+        <PropertyRef Name="planetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_weather_id">
+    <End Role="weather" Type="Self.weather" Multiplicity="1" />
+    <End Role="period" Type="Self.period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weather">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="period">
+        <PropertyRef Name="weatherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClimaMLModelStoreContainer">
+    <EntitySet Name="period" EntityType="Self.period" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="planet" EntityType="Self.planet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_planet_id" Association="Self.fk_planet_id">
+      <End Role="planet" EntitySet="planet" />
+      <End Role="period" EntitySet="period" />
+    </AssociationSet>
+    <AssociationSet Name="fk_weather_id" Association="Self.fk_weather_id">
+      <End Role="weather" EntitySet="weather" />
+      <End Role="period" EntitySet="period" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClimaMLModelStoreContainer" CdmEntityContainer="ClimaMLEntities">
+    <EntitySetMapping Name="period">
+      <EntityTypeMapping TypeName="ClimaMLModel.period">
+        <MappingFragment StoreEntitySet="period">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="weatherId" ColumnName="weatherId" />
+          <ScalarProperty Name="planetId" ColumnName="planetId" />
+          <ScalarProperty Name="rainfall" ColumnName="rainfall" />
+          <ScalarProperty Name="temperature" ColumnName="temperature" />
+          <ScalarProperty Name="pressure" ColumnName="pressure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="planet">
+      <EntityTypeMapping TypeName="ClimaMLModel.planet">
+        <MappingFragment StoreEntitySet="planet">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weather">
+      <EntityTypeMapping TypeName="ClimaMLModel.weather">
+        <MappingFragment StoreEntitySet="weather">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
