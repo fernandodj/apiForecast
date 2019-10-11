@@ -22,7 +22,7 @@ namespace ApiRest
 
                 .WithIdentity("ForecastJob", "Forecast")
 
-                .WithCronSchedule("0 50 21 1/1 * ? *")
+                .WithCronSchedule("0 0 21 1/1 * ? *")
 
                 .StartAt(DateTime.UtcNow)
 
